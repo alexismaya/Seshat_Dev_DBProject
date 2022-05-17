@@ -88,7 +88,7 @@ export default function Menu() {
                 <div class="section__card" id="card2">
                     <h2>Carta del restaurante</h2>
                     <p>Seguro algo se antoja</p>
-                    <div class="section__btn"><button>Info.</button></div>
+                    <div class="section__btn"><button><Link to='/Comidas'>Info.</Link></button></div>
                 </div>
             </div>
         </div>
