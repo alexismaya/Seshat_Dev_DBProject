@@ -1,6 +1,10 @@
 import React from 'react'
 
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { Splide, SplideSlide } from '@splidejs/react-splide'
+import '@splidejs/splide/dist/css/splide.min.css'
+import { Link } from 'react-router-dom'
 
 function Nuevos() {
 
@@ -25,6 +29,7 @@ function Nuevos() {
     ]);
 
     const loadComidas = async () => {
+
         const response = await fetch('http://localhost:4000/Comidas')
         const data = await response.json()
         setListaComidas(data)
@@ -36,15 +41,46 @@ function Nuevos() {
 
     return (
         <div>
-            {
-                listaComidas.map(comidas => {
-                    return (
-                        <div className="nombre__alimento"> {comidas.nombre_alimento} </div>
-                    )
-                })
-            }
+            return (
+            <div className='comidas__container' >
+                <h3>Nuestro menú</h3>
+
+                <Splide options={{
+                    perPage: 4,
+                    arrows: false,
+                    pagination: false,
+                    drag: 'free',
+                    gap: '5rem',
+                }}>
+                    {
+                        listaComidas.map(comidas => {
+                            return (
+                                <SplideSlide>
+                                    <div className='alimento--card' key={comidas.id_comida}>
+                                        <Link to={"/DetallesComida/" + comidas.id_comida}>
+                                            <p>{comidas.nombre_alimento}</p>
+                                            <img src='../../assets/images/hamburguesa.png' alt={comidas.nombre_alimento} />
+                                        </Link>
+                                        <div className='gradient__shadow'></div>
+                                    </div>
+                                </SplideSlide>
+                            )
+                        })
+                    }
+                </Splide>
+
+            </div>
+            )
         </div>
     )
 }
+
+const Gradient = styled.div`
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5));
+`;
 
 export default Nuevos

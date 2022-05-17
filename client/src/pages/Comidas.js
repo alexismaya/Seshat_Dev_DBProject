@@ -14,7 +14,7 @@ function comidas() {
             <div class="navbarMenu">
                 <div class="navbarMenu__container">
                     <Link to="/">
-                        <img src="../../images/quetzalcoatl2.png" alt="" height="75" />
+                        <img src="../../assets/images/quetzalcoatl2.png" alt="" height="75" />
                     </Link>
                     <div class="navbarMenu__toggle" id="mobMenu">
                         <span class="bar"></span>

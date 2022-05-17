@@ -55,7 +55,7 @@ export default function Personal() {
       {
 
         listaPersonal.map(personal => (
-          <div class='personal__container'>
+          <div class='personal__container' key={personal.id_personal}>
             <div class='personal'>
               <img src='assets/images/usuario.png' alt='imagen del personal' class='personal--img' heigh='25px' width='25px' />
               <h2 class='personal__nombre'> {personal.nombre_personal} {personal.ap_paterno_personal} </h2>

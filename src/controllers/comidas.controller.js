@@ -15,6 +15,22 @@ const getComidas = async (req, res) => {
 
 }
 
+const getComida = async (req,res) => {
+
+    const {id} = req.params;
+    const result = await pool.query('SELECT * FROM comidas WHERE id_comida = $1',[id]);
+
+    res.json(result.rows[0]);
+
+    try {
+        const comida = await pool.query('')
+    } catch (error) {
+        console.log(error.message)
+    }
+
+}
+
 module.exports = {
-    getComidas
+    getComidas,
+    getComida
 }
