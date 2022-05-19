@@ -5,6 +5,7 @@ import Menu from './Menu'
 import Personal from './Personal'
 import Comidas from './Comidas'
 import DetallesComida from './DetallesComida'
+import Gerente from './Gerente'
 
 export default function RouterPage() {
     return (
@@ -16,6 +17,7 @@ export default function RouterPage() {
                     <Route path='/Personal' element={<Personal />} />
                     <Route path='/Comidas' element={< Comidas />} />
                     <Route path='/DetallesComida/:name' element={<DetallesComida />} />
+                    <Route path='/Gerente' element={<Gerente />} />
                 </Routes>
             </Router>
         </div>
