@@ -26,6 +26,12 @@
     display: flex;
 }
 
+.Agregar__btn{
+    margin-bottom: 2rem;
+}
+
+
+
 .Actualizar__btn{
     height: 25px;
     width: 100px;

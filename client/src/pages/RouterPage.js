@@ -6,6 +6,8 @@ import Personal from './Personal'
 import Comidas from './Comidas'
 import DetallesComida from './DetallesComida'
 import Gerente from './Gerente'
+import AniadirAlimentos from './AniadirAlimentos'
+import ActualizaAlimento from './ActualizaAlimento'
 
 export default function RouterPage() {
     return (
@@ -18,6 +20,8 @@ export default function RouterPage() {
                     <Route path='/Comidas' element={< Comidas />} />
                     <Route path='/DetallesComida/:name' element={<DetallesComida />} />
                     <Route path='/Gerente' element={<Gerente />} />
+                    <Route path='/AniadirAlimento' element={<AniadirAlimentos />} />
+                    <Route path='/ActualizaAlimento/:name' element={<ActualizaAlimento />} />
                 </Routes>
             </Router>
         </div>

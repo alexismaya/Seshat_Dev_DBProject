@@ -1,12 +1,14 @@
 import React from 'react'
 
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
-import { Link } from 'react-router-dom'
 
 function Alimentos() {
+
+    function goToActualizarAlimento(id_comida){
+        window.location.href = '/ActualizaAlimento/'+ id_comida
+    }
 
     const [listaComidas, setListaComidas] = useState([])
 
@@ -39,11 +41,22 @@ function Alimentos() {
         loadComidas()
     }, [])
 
+    const initAniadirAlimento = e => {
+        e.preventDefault()
+        window.location.href = '/AniadirAlimento'
+    }
+
+    
+
     return (
         <div>
             return (
             <div className='comidas__container' >
                 <h3>Lista de alimentos</h3>
+
+                <div >
+                    <input type='button' className='Agregar__btn' value='Agregar' onClick={initAniadirAlimento} />
+                </div>
 
                 <Splide options={{
                     perPage: 4,
@@ -55,15 +68,18 @@ function Alimentos() {
                     {
                         listaComidas.map(comidas => {
                             return (
-                                <SplideSlide>
-                                    <div className='alimento--card-G' key={comidas.id_comida}>
-                                        <p>{comidas.nombre_alimento}</p>
-                                        <div className='alimento--btns'>
-                                            <input type='button' className='Actualizar__btn' value='Actualizar' />
-                                            <input type='button' className='Borrar__btn' value='Borrar' />
+                                <>
+
+                                    <SplideSlide>
+                                        <div className='alimento--card-G' key={comidas.id_comida}>
+                                            <p>{comidas.nombre_alimento}</p>
+                                            <div className='alimento--btns'>
+                                                <input type='button' className='Actualizar__btn' value='Actualizar' onClick={goToActualizarAlimento(comidas.id_comida)}/>
+                                                <input type='button' className='Borrar__btn' value='Borrar' />
+                                            </div>
                                         </div>
-                                    </div>
-                                </SplideSlide>
+                                    </SplideSlide>
+                                </>
                             )
                         })
                     }

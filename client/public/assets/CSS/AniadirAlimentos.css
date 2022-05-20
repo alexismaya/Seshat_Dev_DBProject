@@ -1,0 +1,67 @@
+.aniadir__background {
+    background: #000;
+}
+
+.actualizar{
+    background: #000;
+}
+
+.actualizar__background h1{
+    margin-top: 2rem;
+    background: linear-gradient(#0770a1 0%, #082142 50%, #0745a1 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+
+.aniadir__background h1 {
+    margin-top: 2rem;
+    background: linear-gradient(#07A15A 0%, #084227 50%, #07A15A 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+
+.aniadir__input{
+    margin-bottom: 5px;
+    border-radius: 5px;
+    
+}
+
+#recetaAlimento{
+    width: 600px;
+}
+
+.aniadir__form {
+    margin-top: 100px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(45deg, #084227 0%, #07A15A 100%);
+    text-align: left;
+}
+
+.input__txt {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.input_txt #recetaAlimento {
+    width: 400px;
+    height: 400px;
+}
+
+.agregar__btn{
+    margin-top: 10px;
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
+}
