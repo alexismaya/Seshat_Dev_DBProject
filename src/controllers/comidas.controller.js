@@ -35,6 +35,8 @@ const createComida = async (req, res) => {
     try {
         const { precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria } = req.body;
 
+        const { id_comida } = req.params
+
         const result = await pool.query('INSERT INTO comidas (precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria) VALUES ($1,$2,$3,$4,$5,$6,$7)', [
             precio,
             receta,
@@ -50,8 +52,56 @@ const createComida = async (req, res) => {
 
 }
 
+const updateComida = async (req, res) => {
+
+    try {
+        const { id } = req.params;
+        const { precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria } = req.body;
+        const result = await pool.query('UPDATE comidas SET precio= $1, receta= $2, nombre_alimento= $3,disponibilidad= $4,nombre_categoria= $5, descripcion= $6,desc_categoria= $7 WHERE id_comida= $8 RETURNING *', [
+            precio, 
+            receta, 
+            nombre_alimento, 
+            disponibilidad, 
+            nombre_categoria, 
+            descripcion, 
+            desc_categoria, 
+            id
+        ]);
+
+        if (result.rows.length == 0)
+            return res.status(404).json({
+                message: "Task not found",
+            });
+
+        console.log(result)
+
+        
+        return res.json(result.rows[0])
+        
+
+
+    } catch (error) {
+        console.log(error.message)
+    }
+
+}
+
+const deleteComida = async (req,res) => {
+
+    try {
+        const {id} = req.params
+        const result = pool.query('DELETE FROM comidas WHERE id_comida= $1',[id])
+        return res.sendStatus(204); // sin devolución pero todo en orden :)
+    } catch (error) {
+        console.log(error.message)
+    }
+
+}
+
 module.exports = {
     getComidas,
     getComida,
-    createComida
+    createComida,
+    updateComida,
+    deleteComida
 }

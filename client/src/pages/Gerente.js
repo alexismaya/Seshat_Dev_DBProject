@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Alimentos from '../components/Alimentos'
+import Empleados from '../components/Empleados'
 
 function Gerente() {
     return (
@@ -17,19 +19,21 @@ function Gerente() {
                     </div>
                     <ul class="navbar__menu">
                         <li class="navbar__item">
-                            <a href="#home" class="navbar__links" id="home-page">Inicio</a>
+                            <a href="#home" class="navbar__links" id="home-page"><Link to='/'>Inicio</Link></a>
                         </li>
                         <li class="navbar__item">
-                            <a href="#about" class="navbar__links" id="about-page">Alimentos</a>
+                            <a href="#alimentos" class="navbar__links" id="about-page">Alimentos</a>
                         </li>
                         <li class="navbar__item">
-                            <a href="#services" class="navbar__links" id="services-page">Empleados</a>
+                            <a href="#empleados" class="navbar__links" id="services-page">Empleados</a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <Alimentos />
+            <Alimentos id='alimentos'/>
+
+            <Empleados/>
 
         </React.Fragment>
     )

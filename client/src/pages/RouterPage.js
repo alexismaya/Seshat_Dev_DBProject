@@ -8,6 +8,8 @@ import DetallesComida from './DetallesComida'
 import Gerente from './Gerente'
 import AniadirAlimentos from './AniadirAlimentos'
 import ActualizaAlimento from './ActualizaAlimento'
+import ActualizarEmpleados from './ActualizarEmpleados'
+import AgregarEmpleados from './AgregarEmpleados'
 
 export default function RouterPage() {
     return (
@@ -21,7 +23,9 @@ export default function RouterPage() {
                     <Route path='/DetallesComida/:name' element={<DetallesComida />} />
                     <Route path='/Gerente' element={<Gerente />} />
                     <Route path='/AniadirAlimento' element={<AniadirAlimentos />} />
-                    <Route path='/ActualizaAlimento/:name' element={<ActualizaAlimento />} />
+                    <Route path='/ActualizarAlimentos/:name' element={<ActualizaAlimento />} />
+                    <Route path='/ActualizarEmpleado/:name' element={<ActualizarEmpleados />} />
+                    <Route path='/AgregarEmpleado' element={<AgregarEmpleados />} />
                 </Routes>
             </Router>
         </div>
