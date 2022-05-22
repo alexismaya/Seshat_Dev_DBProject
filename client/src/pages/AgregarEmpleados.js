@@ -17,7 +17,7 @@ function AgregarEmpleados() {
             numero: '',
             colonia: '',
             codigo_postal: '',
-            estado: '',
+            estado: ''
         }
     ])
 
@@ -35,6 +35,7 @@ function AgregarEmpleados() {
 
     const handleChange = e => {
         setEmpleado({ ...empleado, [e.target.name]: e.target.value })
+        console.log(empleado)
     }
 
     return (
@@ -81,6 +82,14 @@ function AgregarEmpleados() {
                     <div>
                         <labe className='input__txt' for='descCategoria'>Estado:</labe>
                         <input onChange={handleChange} className='aniadir__input' name='estado' />
+                    </div>
+                    <div>
+                        <labe className='input__txt' for='descCategoria'>Fecha de nacimiento:</labe>
+                        <input onChange={handleChange} className='aniadir__input' name='fecha_nacimiento' />
+                    </div>
+                    <div>
+                        <labe className='input__txt' for='descCategoria'>Edad:</labe>
+                        <input onChange={handleChange} className='aniadir__input' name='edad' />
                     </div>
                     <input type='submit' value='Agregar' className='agregar__btn' />
                 </form>

@@ -10,7 +10,7 @@
 }
 
 .alimento--card-G p{
-
+    font-weight: 600;
     height: 60%;
     width: 100%;
     position: relative;

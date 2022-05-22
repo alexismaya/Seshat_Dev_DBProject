@@ -1,13 +1,13 @@
 const pool = require('../db')
 
-const getEmpleados = async (res, req) => {
+const getEmpleados = async (req, res) => {
 
     try {
 
         const empleados = await pool.query('SELECT * FROM empleado')
 
         console.log(empleados)
-        res.json(empleados.row)
+        res.json(empleados.rows)
 
     } catch (error) {
         console.log(error.message)
@@ -28,7 +28,7 @@ const getEmpleado = async (res, req) => {
 
 }
 
-const createEmpleado = async (res, req) => {
+const createEmpleado = async (req, res) => {
 
     try {
         const { edad, sueldo, fecha_nacimiento, rfc_empleado, nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado } = req.body
@@ -41,7 +41,7 @@ const createEmpleado = async (res, req) => {
 
 }
 
-const updateEmpleado = async (res, req) => {
+const updateEmpleado = async (req, res) => {
 
     try {
         const { id } = req.params
@@ -56,7 +56,7 @@ const updateEmpleado = async (res, req) => {
 
 }
 
-const deleteEmpleado = async (res, req) => {
+const deleteEmpleado = async (req, res) => {
 
     try {
         const { id } = req.params

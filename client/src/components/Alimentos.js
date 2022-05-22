@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 function Alimentos() {
 
-    
+
 
     const [listaComidas, setListaComidas] = useState([])
 
@@ -46,10 +46,14 @@ function Alimentos() {
     }
 
     const handleDelete = async (id) => {
-        const res = await fetch(`http://localhost:4000/Comidas/${id}`,{
+        const res = await fetch(`http://localhost:4000/Comidas/${id}`, {
             method: 'DELETE',
         })
         setListaComidas(comidas.filter(comidas => comidas.id_comida !== id))
+    }
+
+    const handleUpdate = (id) => {
+        window.location.href = "/ActualizarAlimentos/" + id
     }
 
     const initAniadirAlimento = e => {
@@ -57,11 +61,11 @@ function Alimentos() {
         window.location.href = '/AniadirAlimento'
     }
 
-    
+
 
     return (
         <div>
-            
+
             <div className='comidas__container' >
                 <h3>Lista de alimentos</h3>
 
@@ -78,25 +82,25 @@ function Alimentos() {
                 }}>
                     {
                         listaComidas.map((comidas) => (
-                                <React.Fragment key={comidas.id_identificador}>
+                            <React.Fragment key={comidas.id_identificador}>
 
-                                    <SplideSlide key={comidas.id_identificador}>
-                                        <div className='alimento--card-G' key={comidas.id_identificador}>
-                                            <p>{comidas.nombre_alimento}</p>
-                                            <div className='alimento--btns'>
-                                            <Link to={"/ActualizarAlimentos/" + comidas.id_identificador}><input type='button' className='Actualizar__btn' value='Actualizar' /></Link>
-                                                <input type='button' className='Borrar__btn' value='Borrar' onClick={() => handleDelete(comidas.id_identificador)}/>
-                                            </div>
+                                <SplideSlide key={comidas.id_identificador}>
+                                    <div className='alimento--card-G' key={comidas.id_identificador}>
+                                        <p>{comidas.nombre_alimento}</p>
+                                        <div className='alimento--btns'>
+                                            <input type='button' className='Actualizar__btn' value='Actualizar' onClick={() => handleUpdate(comidas.id_identificador)} />
+                                            <input type='button' className='Borrar__btn' value='Borrar' onClick={() => handleDelete(comidas.id_identificador)} />
                                         </div>
-                                    </SplideSlide>
-                                </React.Fragment>
-                            
+                                    </div>
+                                </SplideSlide>
+                            </React.Fragment>
+
                         ))
                     }
                 </Splide>
 
             </div>
-            
+
         </div>
     )
 

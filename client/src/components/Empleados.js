@@ -5,7 +5,9 @@ import styled from 'styled-components'
 
 function Empleados() {
 
-    const [empleado,setEmpleado] = useState([
+    const [listaEmpleados, setListaEmpleados] = useState([])
+
+    const [empleado, setEmpleado] = useState([
         {
             num_empleado: '',
             edad: '',
@@ -23,20 +25,21 @@ function Empleados() {
         }
     ])
 
-    const [listaEmpleados,setListaEmpleados] = useState([])
 
-    
+
     const loadEmpleados = async () => {
-        const response = fetch('http://localhost:4000/Empleados')
+        const response = await fetch('http://localhost:4000/Empleados')
         const data = await response.json()
         setListaEmpleados(data)
+        console.log(data)
     }
 
     useEffect(() => {
         loadEmpleados()
-    },[])
+    }, [])
 
     const handleAdd = e => {
+        e.preventDefault()
         window.location.href = '/AgregarEmpleado';
     }
 
@@ -45,20 +48,21 @@ function Empleados() {
     }
 
     const handleDelete = async (id) => {
-        const res = await fetch(`http://localhost:4000/Empleado/${id}`,{
+        const res = await fetch(`http://localhost:4000/Empleado/${id}`, {
             method: 'DELETE',
         })
         setListaEmpleados(empleado.filter(empleado => empleado.num__empleado !== id))
     }
 
 
-  return (
-    <EmpleadosContainer className='empleados__container'>
-        <h1>Lista de empleados</h1>
+    return (
         <div>
-            <input type='button' className='agregarEmpleado__btn' value='Agregar' id='agregarEmpleado__btn' onClick={handleAdd}/>
-        </div>
-        <Splide options={{
+            <EmpleadosContainer className='empleados__container'>
+                <h1>Lista de empleados</h1>
+                <div>
+                    <input type='button' className='agregarEmpleado__btn' value='Agregar' id='agregarEmpleado__btn' onClick={handleAdd} />
+                </div>
+                <Splide options={{
                     perPage: 4,
                     arrows: false,
                     pagination: false,
@@ -66,23 +70,26 @@ function Empleados() {
                     gap: '5rem',
                 }}>
                     {
-                        listaEmpleados.map((empleado) => {
+                        listaEmpleados.map((empleado) => (
                             <React.Fragment key={empleado.num_empleado}>
                                 <SplideSlide>
-                                    <div className='empleado--card'>
-                                        <p> {empleado.nombre}+{empleado.ap_paterno}+{empleado.ap_materno} </p>
-                                        <div className='empleado__btns'>
-                                            <input type='button' value={'Actualizar Datos'} onClick={() => handleUpdate(empleado.num__empleado)}/>
-                                            <input type='button' value='Borrar empleado' onClick={() => handleDelete(empleado.num__empleado)}/>
+                                    <CardEmpleado>
+                                        <div className='empleado--card'>
+                                            <p> {empleado.nombre} {empleado.ap_paterno} {empleado.ap_materno} </p>
+                                            <div className='empleado__btns'>
+                                                <input type='button' value='Actualizar' onClick={() => handleUpdate(empleado.num__empleado)} />
+                                                <input type='button' value='Borrar' onClick={() => handleDelete(empleado.num__empleado)} />
+                                            </div>
                                         </div>
-                                    </div>
+                                    </CardEmpleado>
                                 </SplideSlide>
                             </React.Fragment>
-                        })
+                        ))
                     }
                 </Splide>
-    </EmpleadosContainer>
-  )
+            </EmpleadosContainer>
+        </div>
+    )
 }
 
 const EmpleadosContainer = styled.div`
@@ -101,6 +108,62 @@ const EmpleadosContainer = styled.div`
     #agregarEmpleado__btn{
         margin-top: 2rem;
     }
+
+    
+
+`;
+
+const CardEmpleado = styled.div`
+
+.empleado--card{
+    background: linear-gradient(to right, #a8c0ff, #3f2b96);
+    color: #000000;
+    height: 100px;
+    width: 200px;
+    border-radius: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.empleado--card p{
+    font-weight: 600;
+    height: 60%;
+    width: 100%;
+    position: relative;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.empleado--btns{
+    height: 40%;
+    width: 100%;
+    display: flex;
+}
+
+.Agregar__btn{
+    margin-bottom: 2rem;
+}
+
+
+
+.Actualizar__btn{
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    padding: 0 2rem;
+    box-shadow: #000000 9px #999;
+}
+
+.Borrar__btn{
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    box-shadow: #000000 9px #999;
+    
+}
 
 `
 

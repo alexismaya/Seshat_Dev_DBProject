@@ -10,7 +10,7 @@ function Gerente() {
             <nav class="navbar">
                 <div class="navbar__container">
                     <a href="#home" id="navbar__logo">
-                        <img src="assets/images/quetzalcoatl2.png" alt="" height="75" />
+                        <img src="../../assets/images/quetzalcoatl2.png" alt="" height="75" />
                     </a>
                     <div class="navbar__toggle" id="mobile-menu">
                         <span class="bar"></span>
@@ -19,7 +19,7 @@ function Gerente() {
                     </div>
                     <ul class="navbar__menu">
                         <li class="navbar__item">
-                            <a href="#home" class="navbar__links" id="home-page"><Link to='/'>Inicio</Link></a>
+                            <a href="#home" class="navbar__links" id="home-page">Inicio</a>
                         </li>
                         <li class="navbar__item">
                             <a href="#alimentos" class="navbar__links" id="about-page">Alimentos</a>
@@ -31,9 +31,14 @@ function Gerente() {
                 </div>
             </nav>
 
-            <Alimentos id='alimentos'/>
+            <div>
+                <Alimentos id='alimentos' />
+            </div>
 
-            <Empleados/>
+            <div>
+                <Empleados id='empleados'/>
+            </div>
+
 
         </React.Fragment>
     )
