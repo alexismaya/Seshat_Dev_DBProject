@@ -116,7 +116,7 @@ export default function () {
                         <div class="services__btn"><button>Info.</button></div>
                     </div>
                     <div class="services__card">
-                        <h2>Tus cocineros</h2>
+                        <h2>Nosotros</h2>
                         <p>...</p>
                         <div class="services__btn"><button><Link to="/Personal">Info.</Link></button></div>
                     </div>

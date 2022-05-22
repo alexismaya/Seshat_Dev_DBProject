@@ -4,7 +4,7 @@ const getComidas = async (req, res) => {
 
     try {
 
-        const comidas = await pool.query('SELECT * FROM comidas')
+        const comidas = await pool.query('SELECT * FROM menu_categoria')
 
         console.log(comidas)
         res.json(comidas.rows);
@@ -18,15 +18,9 @@ const getComidas = async (req, res) => {
 const getComida = async (req, res) => {
 
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM comidas WHERE id_comida = $1', [id]);
+    const result = await pool.query('SELECT * FROM menu_categoria WHERE id_identificador = $1', [id]);
 
     res.json(result.rows[0]);
-
-    try {
-        const comida = await pool.query('')
-    } catch (error) {
-        console.log(error.message)
-    }
 
 }
 
@@ -35,9 +29,8 @@ const createComida = async (req, res) => {
     try {
         const { precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria } = req.body;
 
-        const { id_comida } = req.params
 
-        const result = await pool.query('INSERT INTO comidas (precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria) VALUES ($1,$2,$3,$4,$5,$6,$7)', [
+        const result = await pool.query('INSERT INTO menu_categoria (precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria) VALUES ($1,$2,$3,$4,$5,$6,$7)', [
             precio,
             receta,
             nombre_alimento,
@@ -57,7 +50,7 @@ const updateComida = async (req, res) => {
     try {
         const { id } = req.params;
         const { precio, receta, nombre_alimento, disponibilidad, nombre_categoria, descripcion, desc_categoria } = req.body;
-        const result = await pool.query('UPDATE comidas SET precio= $1, receta= $2, nombre_alimento= $3,disponibilidad= $4,nombre_categoria= $5, descripcion= $6,desc_categoria= $7 WHERE id_comida= $8 RETURNING *', [
+        const result = await pool.query('UPDATE menu_categoria SET precio= $1, receta= $2, nombre_alimento= $3,disponibilidad= $4,nombre_categoria= $5, descripcion= $6,desc_categoria= $7 WHERE id_identificador= $8 RETURNING *', [
             precio, 
             receta, 
             nombre_alimento, 
@@ -90,7 +83,7 @@ const deleteComida = async (req,res) => {
 
     try {
         const {id} = req.params
-        const result = pool.query('DELETE FROM comidas WHERE id_comida= $1',[id])
+        const result = pool.query('DELETE FROM menu_categoria WHERE id_comida= $1',[id])
         return res.sendStatus(204); // sin devolución pero todo en orden :)
     } catch (error) {
         console.log(error.message)

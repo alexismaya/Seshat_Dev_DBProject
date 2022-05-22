@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const personalRoutes = require('./routes/personal.routes');
 const comidasRoutes = require('./routes/comidas.routes');
+const empleadosRoutes = require('./routes/empleados.routes');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use(personalRoutes)
 app.use(comidasRoutes)
+app.use(empleadosRoutes)
 
 app.listen(4000)
 console.log('Server on port 4000')

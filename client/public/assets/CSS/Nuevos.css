@@ -12,6 +12,10 @@
     -moz-text-fill-color: transparent;
 }
 
+.prueba{
+    background: linear-gradient(#e04e14 0%, #8f3a13 50%, #e03314 100%);
+}
+
 .alimento--card{
     min-height: 25rem;
     border-radius: 2rem;

@@ -138,6 +138,10 @@ const FormActualiza = styled.div`
         font-size: 20px;
     }
 
+    .input__txt{
+        font-size: 12px;
+    }
+
 `
 
 export default ActualizaAlimento

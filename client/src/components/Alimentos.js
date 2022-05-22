@@ -13,7 +13,7 @@ function Alimentos() {
 
     const [comidas, setComidas] = useState([
         {
-            id_comida: '',
+            id_identificador: '',
             precio: '',
             receta: '',
             nombre_alimento: '',
@@ -78,14 +78,14 @@ function Alimentos() {
                 }}>
                     {
                         listaComidas.map((comidas) => (
-                                <React.Fragment key={comidas.id_comida}>
+                                <React.Fragment key={comidas.id_identificador}>
 
-                                    <SplideSlide key={comidas.id_comida}>
-                                        <div className='alimento--card-G' key={comidas.id_comida}>
+                                    <SplideSlide key={comidas.id_identificador}>
+                                        <div className='alimento--card-G' key={comidas.id_identificador}>
                                             <p>{comidas.nombre_alimento}</p>
                                             <div className='alimento--btns'>
-                                            <Link to={"/ActualizarAlimentos/" + comidas.id_comida}><input type='button' className='Actualizar__btn' value='Actualizar' /></Link>
-                                                <input type='button' className='Borrar__btn' value='Borrar' onClick={() => handleDelete(comidas.id_comida)}/>
+                                            <Link to={"/ActualizarAlimentos/" + comidas.id_identificador}><input type='button' className='Actualizar__btn' value='Actualizar' /></Link>
+                                                <input type='button' className='Borrar__btn' value='Borrar' onClick={() => handleDelete(comidas.id_identificador)}/>
                                             </div>
                                         </div>
                                     </SplideSlide>

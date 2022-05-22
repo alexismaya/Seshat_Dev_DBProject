@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 function AniadirAlimentos() {
 
@@ -23,10 +23,10 @@ function AniadirAlimentos() {
         e.preventDefault()
         console.log(comida)
 
-        const res = await fetch('http://localhost:4000/comidas',{
+        const res = await fetch('http://localhost:4000/comidas', {
             method: "POST",
             body: JSON.stringify(comida),
-            headers: {"Content-type": "application/json"},
+            headers: { "Content-type": "application/json" },
         })
         const data = await res.json()
         console.log(data)
@@ -69,8 +69,6 @@ function AniadirAlimentos() {
                     </div>
                     <input type='submit' value='Agregar' className='agregar__btn' />
                 </form>
-
-
             </div>
 
 

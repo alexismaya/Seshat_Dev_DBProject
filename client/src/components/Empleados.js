@@ -1,6 +1,7 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 
 function Empleados() {
 
@@ -24,8 +25,9 @@ function Empleados() {
 
     const [listaEmpleados,setListaEmpleados] = useState([])
 
+    
     const loadEmpleados = async () => {
-        const response = fetch('')
+        const response = fetch('http://localhost:4000/Empleados')
         const data = await response.json()
         setListaEmpleados(data)
     }
@@ -43,15 +45,18 @@ function Empleados() {
     }
 
     const handleDelete = async (id) => {
-        
+        const res = await fetch(`http://localhost:4000/Empleado/${id}`,{
+            method: 'DELETE',
+        })
+        setListaEmpleados(empleado.filter(empleado => empleado.num__empleado !== id))
     }
 
 
   return (
-    <div className='empleados__container'>
+    <EmpleadosContainer className='empleados__container'>
         <h1>Lista de empleados</h1>
         <div>
-            <input type='button' className='agregarEmpleado__btn' value='Agregar' />
+            <input type='button' className='agregarEmpleado__btn' value='Agregar' id='agregarEmpleado__btn' onClick={handleAdd}/>
         </div>
         <Splide options={{
                     perPage: 4,
@@ -67,8 +72,8 @@ function Empleados() {
                                     <div className='empleado--card'>
                                         <p> {empleado.nombre}+{empleado.ap_paterno}+{empleado.ap_materno} </p>
                                         <div className='empleado__btns'>
-                                            <input type='button' value={'Actualizar Datos'} />
-                                            <input type='button' value='Borrar empleado' />
+                                            <input type='button' value={'Actualizar Datos'} onClick={() => handleUpdate(empleado.num__empleado)}/>
+                                            <input type='button' value='Borrar empleado' onClick={() => handleDelete(empleado.num__empleado)}/>
                                         </div>
                                     </div>
                                 </SplideSlide>
@@ -76,8 +81,27 @@ function Empleados() {
                         })
                     }
                 </Splide>
-    </div>
+    </EmpleadosContainer>
   )
 }
+
+const EmpleadosContainer = styled.div`
+
+    h1{
+        margin-top: 3rem;
+        background: linear-gradient(#e04e14 0%, #8f3a13 50%, #e03314 100%);
+        background-size: 100%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        font-size: 60px;
+    }
+
+    #agregarEmpleado__btn{
+        margin-top: 2rem;
+    }
+
+`
 
 export default Empleados

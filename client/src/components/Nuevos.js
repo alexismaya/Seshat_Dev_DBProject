@@ -12,7 +12,7 @@ function Nuevos() {
 
     const [comidas, setComidas] = useState([
         {
-            id_comida: '',
+            id_identificador: '',
             precio: '',
             receta: '',
             nombre_alimento: '',
@@ -56,8 +56,8 @@ function Nuevos() {
                         listaComidas.map(comidas => {
                             return (
                                 <SplideSlide>
-                                    <div className='alimento--card' key={comidas.id_comida}>
-                                        <Link to={"/DetallesComida/" + comidas.id_comida}>
+                                    <div className='alimento--card' key={comidas.id_identificador}>
+                                        <Link to={"/DetallesComida/" + comidas.id_identificador}>
                                             <p>{comidas.nombre_alimento}</p>
                                             <img src='../../assets/images/hamburguesa.png' alt={comidas.nombre_alimento} />
                                         </Link>
