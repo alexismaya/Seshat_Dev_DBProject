@@ -10,6 +10,7 @@ import AniadirAlimentos from './AniadirAlimentos'
 import ActualizaAlimento from './ActualizaAlimento'
 import ActualizarEmpleados from './ActualizarEmpleados'
 import AgregarEmpleados from './AgregarEmpleados'
+import Carrito from './Carrito'
 
 export default function RouterPage() {
     return (
@@ -26,6 +27,7 @@ export default function RouterPage() {
                     <Route path='/ActualizarAlimentos/:name' element={<ActualizaAlimento />} />
                     <Route path='/ActualizarEmpleado/:name' element={<ActualizarEmpleados />} />
                     <Route path='/AgregarEmpleado' element={<AgregarEmpleados />} />
+                    <Route path='/Carrito' element={<Carrito />} />
                 </Routes>
             </Router>
         </div>

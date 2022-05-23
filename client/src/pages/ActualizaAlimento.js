@@ -35,25 +35,25 @@ function ActualizaAlimento() {
 
 
     useEffect(() => {
-        
+
         fetchDetails();
     }, [params.name])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        await fetch(`http://localhost:4000/Comidas/${params.name}`,{
+        await fetch(`http://localhost:4000/Comidas/${params.name}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(comidas)
         });
-        
+
     }
 
     const handleChange = (e) => {
-        
+
         setComidas({ ...comidas, [e.target.name]: e.target.value })
         console.log(comidas)
     }
@@ -65,31 +65,31 @@ function ActualizaAlimento() {
                 <FormActualiza>
                     <div>
                         <label className='txt__lab' htmlFor='nombre_alimento'>Nombre del alimento</label>
-                        <input onChange={handleChange} contentEditable='true'  type='text' className='input__txt' name='nombre_alimento' value={comidas.nombre_alimento || ''}/>
+                        <input onChange={handleChange} contentEditable='true' type='text' className='input__txt' name='nombre_alimento' value={comidas.nombre_alimento || ''} />
                     </div>
                     <div>
                         <label className='txt__lab' htmlFor='precio'>Precio del alimento</label>
-                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='precio' value={comidas.precio || ''}/>
+                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='precio' value={comidas.precio || ''} />
                     </div>
                     <div>
                         <label className='txt__lab' htmlFor='receta'>Receta del alimento</label>
-                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='receta' value={comidas.receta || ''}/>
+                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='receta' value={comidas.receta || ''} />
                     </div>
                     <div>
                         <label className='txt__lab' htmlFor='descripcion'>Descripcion del alimento</label>
-                        <input onChange={handleChange}  type='text' className='input__txt' name='descripcion' value={comidas.descripcion || ''}/>
+                        <input onChange={handleChange} type='text' className='input__txt' name='descripcion' value={comidas.descripcion || ''} />
                     </div>
                     <div>
                         <label className='txt__lab' htmlFor='nombre_categoria'>Nombre de la categoria</label>
-                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='nombre_categoria' value={comidas.nombre_categoria || ''}/>
+                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='nombre_categoria' value={comidas.nombre_categoria || ''} />
                     </div>
                     <div>
                         <label className='txt__lab' htmlFor='desc_categoria'>Descripcion de la categoria</label>
-                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='desc_categoria' value={comidas.desc_categoria || ''}/>
+                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='desc_categoria' value={comidas.desc_categoria || ''} />
                     </div>
                     <div>
                         <label className='txt__lab' htmlFor='disponibilidad'>Disponibilidad del alimento</label>
-                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='disponibilidad' value={comidas.disponibilidad || ''}/>
+                        <input onChange={handleChange} contentEditable='true' className='input__txt' name='disponibilidad' value={comidas.disponibilidad || ''} />
                     </div>
                     <input type='submit' value='Actualizar' className='agregar__btn' />
                 </FormActualiza>

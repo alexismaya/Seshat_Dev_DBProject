@@ -9,7 +9,7 @@ function Empleados() {
 
     const [empleado, setEmpleado] = useState([
         {
-            num_empleado: '',
+            id_empleado: '',
             edad: '',
             sueldo: '',
             fecha_nacimiento: '',
@@ -44,14 +44,15 @@ function Empleados() {
     }
 
     const handleUpdate = (id) => {
-        window.location.href = `/ActualizarEmpleado/${id}`
+        window.location.href = "/ActualizarEmpleado/" + id;
     }
 
     const handleDelete = async (id) => {
+        window.location.reload()
         const res = await fetch(`http://localhost:4000/Empleado/${id}`, {
             method: 'DELETE',
         })
-        setListaEmpleados(empleado.filter(empleado => empleado.num__empleado !== id))
+        setListaEmpleados(empleado.filter(empleado => empleado.id_empleado !== id))
     }
 
 
@@ -71,14 +72,14 @@ function Empleados() {
                 }}>
                     {
                         listaEmpleados.map((empleado) => (
-                            <React.Fragment key={empleado.num_empleado}>
-                                <SplideSlide>
-                                    <CardEmpleado>
-                                        <div className='empleado--card'>
+                            <React.Fragment key={empleado.id_empleado}>
+                                <SplideSlide key={empleado.id_empleado}>
+                                    <CardEmpleado key={empleado.id_empleado}>
+                                        <div className='empleado--card' key={empleado.id_empleado}>
                                             <p> {empleado.nombre} {empleado.ap_paterno} {empleado.ap_materno} </p>
                                             <div className='empleado__btns'>
-                                                <input type='button' value='Actualizar' onClick={() => handleUpdate(empleado.num__empleado)} />
-                                                <input type='button' value='Borrar' onClick={() => handleDelete(empleado.num__empleado)} />
+                                                <input type='button' value='Actualizar' onClick={() => handleUpdate(empleado.id_empleado)} />
+                                                <input type='button' value='Borrar' onClick={() => handleDelete(empleado.id_empleado)} />
                                             </div>
                                         </div>
                                     </CardEmpleado>
