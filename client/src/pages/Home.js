@@ -49,6 +49,9 @@ export default function () {
                         <li class="navbar__btn">
                             <a href="#sign-up" class="button" id="signup">Registrarme</a>
                         </li>
+                        <li class="navbar__btn">
+                            <a href="/Carrito" class="button" id="car">Carrito</a>
+                        </li>
                     </ul>
                 </div>
             </nav>

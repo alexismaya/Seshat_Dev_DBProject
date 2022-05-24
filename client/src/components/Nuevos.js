@@ -41,7 +41,6 @@ function Nuevos() {
 
     return (
         <div>
-            return (
             <div className='comidas__container' >
                 <h3>Nuestro menú</h3>
 
@@ -70,7 +69,6 @@ function Nuevos() {
                 </Splide>
 
             </div>
-            )
         </div>
     )
 }

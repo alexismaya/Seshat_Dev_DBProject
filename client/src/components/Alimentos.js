@@ -40,10 +40,6 @@ function Alimentos() {
         loadComidas()
     }, [])
 
-    const initActualizarAlimento = e => {
-        e.preventDefault()
-        window.location.href = '/ActualizarAlimento'
-    }
 
     const handleDelete = async (id) => {
         const res = await fetch(`http://localhost:4000/Comidas/${id}`, {
