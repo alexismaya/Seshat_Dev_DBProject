@@ -113,10 +113,10 @@ export default function () {
             <div class="services" id="services">
                 <h1>Servicios</h1>
                 <div class="services__wrapper">
-                    <div class="services__card">
-                        <h2>Todo lo que ofrecemos</h2>
-                        <p>Apenas es el comienzo</p>
-                        <div class="services__btn"><button>Info.</button></div>
+                    <div class="services__card" id='masVendido'>
+                        <h2>Mira nuestro platillo más pedido</h2>
+                        <p>¿Lo merece...?</p>
+                        <div class="services__btn"><button><Link to='/MasVendido'>Info.</Link></button></div>
                     </div>
                     <div class="services__card">
                         <h2>Nosotros</h2>

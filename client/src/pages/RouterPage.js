@@ -11,6 +11,7 @@ import ActualizaAlimento from './ActualizaAlimento'
 import ActualizarEmpleados from './ActualizarEmpleados'
 import AgregarEmpleados from './AgregarEmpleados'
 import Carrito from './Carrito'
+import MasVendido from './MasVendido'
 
 export default function RouterPage() {
     return (
@@ -28,6 +29,7 @@ export default function RouterPage() {
                     <Route path='/ActualizarEmpleado/:name' element={<ActualizarEmpleados />} />
                     <Route path='/AgregarEmpleado' element={<AgregarEmpleados />} />
                     <Route path='/Carrito' element={<Carrito />} />
+                    <Route path='/MasVendido' element={<MasVendido />} />
                 </Routes>
             </Router>
         </div>

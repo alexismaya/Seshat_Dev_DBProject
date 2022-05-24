@@ -8,7 +8,7 @@ export default function Carrito() {
 
     document.body.style = 'background: linear-gradient(to right, #0f2027, #203a43, #2c5364);';
 
-    const [fecha,setFecha] = useState([
+    const [fecha, setFecha] = useState([
         {
             current_date: '',
         }
@@ -88,7 +88,7 @@ export default function Carrito() {
         const response = await fetch(`http://localhost:4000/Comidas/${id}`)
         const data = await response.json()
 
-        setListaTicket([...listaTicket,data])
+        setListaTicket([...listaTicket, data])
 
     }
 
@@ -96,7 +96,7 @@ export default function Carrito() {
         const response = await fetch('http://localhost:4000/Fecha')
         const data = await response.json()
         const date = data.current_date
-        const subDate = date.substring(0,10)
+        const subDate = date.substring(0, 10)
         data.current_date = subDate
         setFecha(data)
     }
@@ -134,7 +134,7 @@ export default function Carrito() {
                             <a href="#contact" class="navbar__links" id="contacts-page">Contactos</a>
                         </li>
                         <li class="navbar__btn">
-                            <a href="#sign-up" class="button" id="signup">Registrarme</a>
+                            <a href="/home#sign-up" class="button" id="signup">Registrarme</a>
                         </li>
 
                     </ul>
@@ -162,12 +162,14 @@ export default function Carrito() {
                                 <h2>Folio:</h2>
                                 <h2> {Number(numOrden.count) + 1} </h2>
                             </div>
+                            <input type='button' value='Generar compra' className='carrito--btn' />
                         </div>
+
                         <div className='ticket--order'>
                             <h2>---Ticket---</h2>
                             {
                                 listaTicket.map((comidas) => {
-                                    return(
+                                    return (
                                         <h2> {comidas.nombre_alimento}........{comidas.precio} </h2>
                                     )
                                 })
