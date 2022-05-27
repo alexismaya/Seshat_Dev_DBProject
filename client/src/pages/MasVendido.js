@@ -1,9 +1,44 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import styled from 'styled-components'
 
 export default function MasVendido() {
 
     document.body.style = 'background: linear-gradient(45deg, #8b1103, #885202);'
+
+    const [main,setMain] = useState([
+        {
+            id_identificador: '',
+            nombre_alimento: '',
+        }
+    ])
+    
+    const [comida,setComida] = useState([
+        {
+            id_identificador: '',
+            precio: '',
+            receta: '',
+            nombre_alimento: '',
+            disponibilidad: '',
+            nombre_categoria: '',
+            descripcion: '',
+            desc_categoria: '',
+            tipo_categoria: '',
+            nivel_dificultad: '',
+            sin_alcohol: '',
+            con_alcohol: '',
+        }
+    ])
+
+    const loadMain = async () => {
+        const main = await fetch('http://localhost:4000/ComidaMain')
+        const mainData = await main.json()
+        setMain(mainData)
+        console.log(mainData)
+    }
+
+    useEffect(() => {
+        loadMain()
+    },[])
 
     return (
         <>
@@ -13,7 +48,7 @@ export default function MasVendido() {
             <StyledNombre className='nombre__platillo'>
 
                 <img src="assets/images/maya.png" alt="icono__maya1" height="200px" width="200px" className='left__icon' />
-                <h2>Nombre del Platillo</h2>
+                <h2> {main.nombre_alimento} </h2>
                 <img src="assets/images/maya1.png" alt="icono__maya1" height="250px" width="250px" id='right__icon' />
 
             </StyledNombre>

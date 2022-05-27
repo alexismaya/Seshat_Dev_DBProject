@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom'
 
 function Alimentos() {
 
+    /* Es necesario utilizar los hooks useState y useEffect de react para mejorar la comunicación */
 
+    /* Se crean hooks para almecenar los json que va a mandar el backend y la base de datos */
 
     const [listaComidas, setListaComidas] = useState([])
 
@@ -29,18 +31,25 @@ function Alimentos() {
         }
     ]);
 
-    const loadComidas = async () => {
+        /* Uso de la base de datos en la página web */
+
+    const loadComidas = async () => { // esta funcion envía una solicitud GET al backend y el back end manda
+                                       // la respectiva query a la base de datos
 
         const response = await fetch('http://localhost:4000/Comidas')
         const data = await response.json()
-        setListaComidas(data)
+        setListaComidas(data) // aquí ya cargo los datos recibidos
     }
 
     useEffect(() => {
-        loadComidas()
+        loadComidas() // esta función es necesaria para llenar los hooks correctamente
     }, [])
 
-
+    /* Cuando se quiera realizar una creación, actualización o eliminación en la base
+        es necesario añadir el método que se quiere realizar
+        DELETE -----> para DELETE
+        POST ------> para INSERT
+        PUT ------> para UPDATE */
     const handleDelete = async (id) => {
         const res = await fetch(`http://localhost:4000/Comidas/${id}`, {
             method: 'DELETE',
@@ -72,8 +81,8 @@ function Alimentos() {
                 <Splide options={{
                     perPage: 4,
                     arrows: false,
-                    pagination: false,
-                    drag: 'free',
+                    pagination: false,        /* Se puede ver como la información proporcionada */
+                    drag: 'free',               /* viene directamente de los datos que arroja la base */
                     gap: '5rem',
                 }}>
                     {

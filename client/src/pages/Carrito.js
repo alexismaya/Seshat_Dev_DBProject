@@ -8,6 +8,13 @@ export default function Carrito() {
 
     document.body.style = 'background: linear-gradient(to right, #0f2027, #203a43, #2c5364);';
 
+    const [contiene,setContiene] = useState([
+        {
+            folio: '',
+            id_identificador: '',
+        }
+    ])
+
     const [fecha, setFecha] = useState([
         {
             current_date: '',
@@ -60,6 +67,27 @@ export default function Carrito() {
         }
     ])
 
+    const [orden,setOrden] = useState([
+        {
+            rfc_cliente: '',
+        }
+    ])
+
+    const handleChange = (e) => {
+        setOrden({ ...orden, [e.target.name]: e.target.value })
+    }
+
+    const handleMakeOrder = async () => {
+
+        const res = await fetch('http://localhost:4000/CreateOrden',{
+            method: 'POST',
+            body: JSON.stringify(orden),
+            headers: { "Content-type": "application/json" },
+        })
+        const data = await res.json()
+        console.log(data)
+    }
+
     const loadComidas = async () => {
 
         const response = await fetch('http://localhost:4000/Comidas')
@@ -72,12 +100,12 @@ export default function Carrito() {
         const data = await response.json()
         setNumOrden(data)
         console.log(data)
-    }
+    }                        /* esta sección es de las más completas  y complejas del proyecto */
 
     const loadEmpleado = async () => {
-        const responseA = await fetch('http://localhost:4000/CantOrdenes')
+        const responseA = await fetch('http://localhost:4000/CantEmpleados')
         const dataA = await responseA.json()
-        let empleado = await Math.floor(Math.random() * ((Number(dataA.count) + 3) - 1)) + 1;
+        let empleado =  Math.floor(Math.random() * ((Number(dataA.count) + 3) - 1)) + 1;
         const responseB = await fetch(`http://localhost:4000/Empleado/${empleado}`)
         const dataB = await responseB.json()
         setEmpleado(dataB)
@@ -89,6 +117,22 @@ export default function Carrito() {
         const data = await response.json()
 
         setListaTicket([...listaTicket, data])
+
+
+
+        setContiene({...contiene, [contiene.folio] : (Number(numOrden.count))})
+        setContiene({...contiene, [contiene.id_identificador] : data.id_identificador})
+
+        console.log(contiene)
+
+        const res = await fetch('http://localhost:4000/AgregarAlimentoOrden',{
+            method: 'POST',
+            body: JSON.stringify(contiene),
+            headers: { "Content-type": "application/json" },
+        })
+
+        const resData = await res.json()
+        console.log(resData)
 
     }
 
@@ -146,13 +190,14 @@ export default function Carrito() {
                 <div className='order--info'>
                     <div className='order__container'>
                         <div>
+                            <input type='text' name='rfc_cliente' placeholder='Ingresa tu RFC' onChange={handleChange}/>
                             <div className='cont__container'>
                                 <h2>Esta orden será atendida por: </h2>
                                 <h2> {empleado.nombre} {empleado.ap_paterno} {empleado.ap_materno} </h2>
                             </div>
                             <div className='cont__container'>
                                 <h2>Precio Total:</h2>
-                                <h2>$$</h2>
+                                <h2> {orden.precio_total} </h2>
                             </div>
                             <div className='cont__container'>
                                 <h2>Fecha:</h2>
@@ -162,7 +207,7 @@ export default function Carrito() {
                                 <h2>Folio:</h2>
                                 <h2> {Number(numOrden.count) + 1} </h2>
                             </div>
-                            <input type='button' value='Generar compra' className='carrito--btn' />
+                            <input type='button' value='Generar orden' className='carrito--btn' onClick={handleMakeOrder}/>
                         </div>
 
                         <div className='ticket--order'>

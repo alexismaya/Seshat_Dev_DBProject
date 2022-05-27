@@ -53,6 +53,74 @@
     text-align: left;
 }
 
+.forms__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.img__form{
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.formImg__container{
+    margin-top: 10px;
+    height: 350px;
+    width: 430px;
+}
+
+.formImg__wrapper{
+    height: 300px;
+    width: 100%;
+    border: 2px dashed #07A15A;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.formImg__wrapper.active{
+    border: none;
+}
+
+.formImg__wrapper.active .borrar__btn{
+    display: block;
+}
+
+.txt__noImg{
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight: 500;
+}
+
+.formImg__img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.formImg__img img{
+    height: 100%;
+    width: 100%;
+}
+
+.borrar__btn{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    display: none;
+}
+
 .input__txt {
     margin-right: 5px;
     font-size: 20px;

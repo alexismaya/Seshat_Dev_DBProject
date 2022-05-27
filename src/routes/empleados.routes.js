@@ -1,11 +1,13 @@
 const { Router } = require('express')
-const { getEmpleados, getEmpleado, createEmpleado, updateEmpleado, deleteEmpleado} = require('../controllers/empleados.controller')
+const { getEmpleados, getEmpleado, getCantEmpleados,createEmpleado, updateEmpleado, deleteEmpleado} = require('../controllers/empleados.controller')
 
 const router = Router()
 
 router.get('/Empleados', getEmpleados)
 
 router.get('/Empleado/:id', getEmpleado)
+
+router.get('/CantEmpleados',getCantEmpleados)
 
 router.post('/Empleados', createEmpleado)
 

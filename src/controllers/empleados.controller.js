@@ -29,9 +29,9 @@ const getEmpleado = async (req, res) => {
 const createEmpleado = async (req, res) => {
 
     try {
-        const { sueldo,nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado } = req.body
-        const result = await pool.query('INSERT INTO empleado (sueldo,nombre,ap_paterno,ap_materno,calle,numero,colonia,codigo_postal,estado) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [
-            sueldo,nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado
+        const { edad, sueldo, fecha_nacimiento, rfc_empleado, nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado } = req.body
+        const result = await pool.query('INSERT INTO empleado (edad,sueldo,fecha_nacimiento,rfc_empleado,nombre,ap_paterno,ap_materno,calle,numero,colonia,codigo_postal,estado) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)', [
+            edad, sueldo, fecha_nacimiento, rfc_empleado, nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado
         ])
     } catch (error) {
         console.log(error.message)
@@ -39,13 +39,18 @@ const createEmpleado = async (req, res) => {
 
 }
 
+const getCantEmpleados = async (req,res) => {
+    const result = await pool.query('SELECT count(*) FROM empleado')
+    res.json(result.rows[0])
+}
+
 const updateEmpleado = async (req, res) => {
 
     try {
         const { id } = req.params
-        const { sueldo,nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado } = req.body
+        const { sueldo, nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado } = req.body
         const result = await pool.query('UPDATE empleado SET sueldo= $1, nombre=$2,ap_paterno=$3,ap_materno=$4,calle=$5,numero=$6,colonia=$7,codigo_postal=$8,estado=$9 WHERE id_empleado=$10', [
-            sueldo,nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado, id
+            sueldo, nombre, ap_paterno, ap_materno, calle, numero, colonia, codigo_postal, estado, id
         ])
         return res.json(result.rows[0])
     } catch (error) {
@@ -71,4 +76,5 @@ module.exports = {
     createEmpleado,
     updateEmpleado,
     deleteEmpleado,
+    getCantEmpleados
 }
