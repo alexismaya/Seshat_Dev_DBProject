@@ -12,6 +12,7 @@ import ActualizarEmpleados from './ActualizarEmpleados'
 import AgregarEmpleados from './AgregarEmpleados'
 import Carrito from './Carrito'
 import MasVendido from './MasVendido'
+import Factura from './Factura'
 
 export default function RouterPage() {
     return (
@@ -27,6 +28,7 @@ export default function RouterPage() {
                     <Route path='/AniadirAlimento' element={<AniadirAlimentos />} />
                     <Route path='/ActualizarAlimentos/:name' element={<ActualizaAlimento />} />
                     <Route path='/ActualizarEmpleado/:name' element={<ActualizarEmpleados />} />
+                    <Route path='/Factura/:name' element={<Factura />} />
                     <Route path='/AgregarEmpleado' element={<AgregarEmpleados />} />
                     <Route path='/Carrito' element={<Carrito />} />
                     <Route path='/MasVendido' element={<MasVendido />} />

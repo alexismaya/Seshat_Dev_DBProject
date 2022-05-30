@@ -11,7 +11,7 @@ function AniadirAlimentos() {
     ])
 
     
-
+    
     const loadCantidad = async () => {
         const response = await fetch('http://localhost:4000/CantOrdenes')
         const data = await response.json()

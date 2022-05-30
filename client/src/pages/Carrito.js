@@ -8,12 +8,9 @@ export default function Carrito() {
 
     document.body.style = 'background: linear-gradient(to right, #0f2027, #203a43, #2c5364);';
 
-    const [contiene,setContiene] = useState([
-        {
-            folio: '',
-            id_identificador: '',
-        }
-    ])
+    const [pagoTotal,setPagoTotal] = useState()
+
+    const [contiene,setContiene] = useState()
 
     const [fecha, setFecha] = useState([
         {
@@ -70,6 +67,7 @@ export default function Carrito() {
     const [orden,setOrden] = useState([
         {
             rfc_cliente: '',
+            total_pago: '',
         }
     ])
 
@@ -118,22 +116,34 @@ export default function Carrito() {
 
         setListaTicket([...listaTicket, data])
 
+        console.log(data.id_identificador)
 
-
-        setContiene({...contiene, [contiene.folio] : (Number(numOrden.count))})
-        setContiene({...contiene, [contiene.id_identificador] : data.id_identificador})
-
-        console.log(contiene)
+        const nuevoAlimento = {
+            folio: Number(numOrden.count) + 1, 
+            id_identificador: data.id_identificador,
+        }
+        console.log(nuevoAlimento)
+        setContiene(nuevoAlimento)
 
         const res = await fetch('http://localhost:4000/AgregarAlimentoOrden',{
             method: 'POST',
-            body: JSON.stringify(contiene),
+            body: JSON.stringify(nuevoAlimento),
             headers: { "Content-type": "application/json" },
         })
 
-        const resData = await res.json()
-        console.log(resData)
+        
 
+    }
+
+    const loadPrecioTotal = async () => {
+        const pago = await fetch(`http://localhost:4000/GetPrecioTotal/${Number(numOrden.count) + 1}`)
+        const pagoData = await pago.json()
+        const actualizaPago = {
+            total_pago: pagoData.total_pago
+        }
+        console.log(actualizaPago)
+        setPagoTotal(actualizaPago)
+        console.log(pagoTotal.total_pago)
     }
 
     const loadDate = async () => {
@@ -197,7 +207,7 @@ export default function Carrito() {
                             </div>
                             <div className='cont__container'>
                                 <h2>Precio Total:</h2>
-                                <h2> {orden.precio_total} </h2>
+                                <h2> {} </h2>
                             </div>
                             <div className='cont__container'>
                                 <h2>Fecha:</h2>

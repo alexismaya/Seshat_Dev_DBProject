@@ -31,6 +31,12 @@ const agregaAlimento = async (req, res) => {
     }
 }
 
+const getPrecioTotal = async (req,res) => {
+    const {id} = req.params
+    const result = await pool.query('SELECT total_pago FROM orden WHERE folio=$1',[id])
+    res.json(result.rows[0]);
+}
+
 const getOrdenesEmpleadoXDia = async (req, res) => {
     const { id } = req.body
     const result = await pool.query('SELECT ordenes_empleado($1)', [id])
@@ -42,5 +48,6 @@ module.exports = {
     createOrden,
     agregaAlimento,
     getOrdenesEmpleadoXDia,
-    getOrdenesRango
+    getOrdenesRango,
+    getPrecioTotal
 }
