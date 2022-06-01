@@ -7,8 +7,8 @@ export default function MasVendido() {
 
     const [main,setMain] = useState([
         {
-            id_identificador: '',
             nombre_alimento: '',
+            total: '',
         }
     ])
     
@@ -82,6 +82,7 @@ const StyledNombre = styled.div`
         text-align: center;
         place-self: center;
         margin-left: 10px;
+        font-size: 50px;
     }
 
     justify-content: center;

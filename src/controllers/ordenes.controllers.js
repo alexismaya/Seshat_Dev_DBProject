@@ -43,11 +43,18 @@ const getOrdenesEmpleadoXDia = async (req, res) => {
     res.json(result.rows[0])
 }
 
+const getFactura = async (req,res) => {
+    const {id} = req.params
+    const result = await pool.query('SELECT * FROM FACTURA WHERE rfc_cliente=$1',[id])
+    res.json(response.rows[0])
+}
+
 module.exports = {
     getCantidadOrdenes,
     createOrden,
     agregaAlimento,
     getOrdenesEmpleadoXDia,
     getOrdenesRango,
-    getPrecioTotal
+    getPrecioTotal,
+    getFactura
 }

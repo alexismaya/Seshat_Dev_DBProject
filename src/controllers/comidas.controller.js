@@ -102,7 +102,7 @@ const deleteComida = async (req, res) => {
 
     try {
         const { id } = req.params
-        const result = pool.query('DELETE FROM menu_categoria WHERE id_comida= $1', [id])
+        const result = pool.query('DELETE FROM menu_categoria WHERE id_identificador= $1 ON CASCADE', [id])
         return res.sendStatus(204); // sin devolución pero todo en orden :)
     } catch (error) {
         console.log(error.message)

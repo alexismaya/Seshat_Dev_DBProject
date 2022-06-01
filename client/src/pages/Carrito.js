@@ -73,6 +73,7 @@ export default function Carrito() {
 
     const handleChange = (e) => {
         setOrden({ ...orden, [e.target.name]: e.target.value })
+
     }
 
     const handleMakeOrder = async () => {
@@ -107,6 +108,10 @@ export default function Carrito() {
         const responseB = await fetch(`http://localhost:4000/Empleado/${empleado}`)
         const dataB = await responseB.json()
         setEmpleado(dataB)
+    }
+
+    const handleGeneraFactura = (id) => {
+        window.open(`http://localhost:4000/Factura/${id}`)
     }
 
     const handleAgregaCarrito = async (id) => {
@@ -206,10 +211,6 @@ export default function Carrito() {
                                 <h2> {empleado.nombre} {empleado.ap_paterno} {empleado.ap_materno} </h2>
                             </div>
                             <div className='cont__container'>
-                                <h2>Precio Total:</h2>
-                                <h2> {} </h2>
-                            </div>
-                            <div className='cont__container'>
                                 <h2>Fecha:</h2>
                                 <h2> {fecha.current_date} </h2>
                             </div>
@@ -230,6 +231,9 @@ export default function Carrito() {
                                 })
                             }
                         </div>
+                    </div>
+                    <div>
+                        <input type='button' value='Obtener factura' onClick={handleGeneraFactura(orden.rfc_cliente)} />
                     </div>
                     <div className='lista__container'>
                         <h2>Lista de productos</h2>
