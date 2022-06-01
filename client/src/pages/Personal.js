@@ -26,6 +26,8 @@ export default function Personal() {
     }
   ]);
 
+  
+
   const loadEmpleado = async () => {
     const response = await fetch('http://localhost:4000/Empleados')
     const data = await response.json()
